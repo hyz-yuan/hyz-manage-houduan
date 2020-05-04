@@ -15,17 +15,27 @@ public class UserServiceImpl implements UserService {
     private UserMapper userDao;
 
     @Override
-    public User selectUser(int userId) {
-        return userDao.selectByPrimaryKey(userId);
+    public User selectUser(User user) {
+        return userDao.selectByPrimaryKey(user);
     }
 
     @Override
-    public void updateUser(User user){
-        userDao.updateByPrimaryKeySelective(user);
+    public int updateUser(User user){
+        return userDao.updateByPrimaryKey(user);
+    }
+
+    @Override
+     public int deletUser(User user){
+        return userDao.deletUserFlag(user);
     }
 
     @Override
     public List<User> selectManager() {
         return userDao.selectManagerByRole();
+    }
+
+    @Override
+    public int insertUSer(User user){
+        return userDao.insert(user);
     }
 }
