@@ -31,26 +31,59 @@ public class UserController {
         List<User> managerList = userService.selectManager();
         return CommonReturnType.create(managerList,"获取成功");
     }
-
-    @RequestMapping("/json4")
+    /*
+    * 获取所有user名单
+    * */
+    @RequestMapping("/allUser")
     @ResponseBody
-    public CommonReturnType jsonTest4(){
-        User user = userService.selectUser(new User());
-        List l=new ArrayList();
-        l.add(user);
+    public CommonReturnType allUser(){
+        List<User> users = userService.selectUsers();
 
-        return CommonReturnType.create(l);
+        return CommonReturnType.create(users);
+    }
+    /*
+    * 获取指定user信息
+    * */
+    @RequestMapping("/getUserById")
+    @ResponseBody
+    public CommonReturnType getUserById(@RequestBody User user){
+        User result = userService.selectUser(user);
+
+        return CommonReturnType.create(result);
+    }
+    /*
+    * 删除user
+    * */
+    @RequestMapping("/deletUser")
+    @ResponseBody
+    public CommonReturnType deletUser(@RequestBody User user){
+        int result = userService.deletUser(user);
+
+        return CommonReturnType.create(result);
+    }
+    /*
+    * 更新user
+    * */
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public CommonReturnType updateUser(@RequestBody User user){
+        int result = userService.updateUser(user);
+
+        return CommonReturnType.create(result);
+
+    }
+    /*
+    * 添加新用户
+    * */
+    @RequestMapping("/insertUser")
+    @ResponseBody
+    public CommonReturnType insertUser(@RequestBody User user){
+        int result = userService.insertUser(user);
+
+        return CommonReturnType.create(result);
+
     }
 
-    @RequestMapping("/json")
-    @ResponseBody
-    public CommonReturnType jsonTest(){
-         User user = userService.selectUser(new User());
-         List l=new ArrayList();
-        l.add(user);
-
-        return CommonReturnType.create(l);
-    }
     @RequestMapping("/json1")
     @ResponseBody
     public CommonReturnType stringTest(@RequestBody User webUser, HttpServletRequest request){
@@ -63,14 +96,5 @@ public class UserController {
         return CommonReturnType.create(l);
 
     }
-    @RequestMapping("/json2")
-    @ResponseBody
-    public CommonReturnType intTest(@RequestBody int i){
-        User user = userService.selectUser(new User());
-        List l=new ArrayList();
-        l.add(user);
-        l.add(user);
-        return CommonReturnType.create(l);
 
-    }
 }

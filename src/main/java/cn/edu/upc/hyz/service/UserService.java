@@ -16,5 +16,7 @@ public interface UserService {
     /*通过flag删除*/
     int deletUser(User user);
     /*添加user*/
-    int insertUSer(User user);
+    int insertUser(User user);
+    /*查询所有user*/
+    List<User> selectUsers();
 }
