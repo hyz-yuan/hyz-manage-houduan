@@ -59,7 +59,6 @@ public interface UserMapper {
     List<EmployeeSelect> selectByName(EmployeeSelectInput employeeSelectInput);
 
     //董志涵
-    public User selectByUsername(@Param("username") String username);
 
     public void changePasswordByEmail(@Param("newPassword") String newPassword, @Param("email") String email);
 
@@ -84,4 +83,5 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     User selectByPrimaryKey(User record);
     int insert(User record);
+    public User selectByUsername(String username);
 }
