@@ -40,9 +40,9 @@ public class MessageController {
         return CommonReturnType.create(null);
     }
     //为发送信息提供名单（项目，小组，人员）
-    @RequestMapping("/test")
+    @RequestMapping("/sendMessageHelp")
     @ResponseBody
-    public CommonReturnType test(){
+    public CommonReturnType sendMessageHelp(){
         Map<String,Object> list = new LinkedHashMap<String,Object>();
         list.put("technology",messageService.getProjectList());
         list.put("group",messageService.getGroupList());
