@@ -3,6 +3,7 @@ package cn.edu.upc.hyz.controller;
 import cn.edu.upc.hyz.service.UserService;
 import cn.edu.upc.hyz.common.CommonReturnType;
 import cn.edu.upc.hyz.model.User;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -83,6 +84,20 @@ public class UserController {
         return CommonReturnType.create(result);
 
     }
+    /*
+    * 通过id修改密码
+    * */
+    @RequestMapping("/changePassword")
+    @ResponseBody
+    public CommonReturnType changePassword(@RequestBody User user){
+        User newUser=userService.selectUser(user);
+        newUser.setPassword(user.getPassword());
+        userService.updateUser(newUser);
+
+        return CommonReturnType.create(null);
+
+    }
+
 
     @RequestMapping("/json1")
     @ResponseBody

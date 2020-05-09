@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service("rightServiceImpl")
 public class RightServiceImpl implements RightService {
@@ -41,5 +42,10 @@ public class RightServiceImpl implements RightService {
     @Override
     public List<Rights> selectAllRights() {
         return rightMapper.selectAllRights();
+    }
+
+    @Override
+    public List<Map<String,Object>> selectAllViewRights() {
+        return rightMapper.selectAllViewRights();
     }
 }

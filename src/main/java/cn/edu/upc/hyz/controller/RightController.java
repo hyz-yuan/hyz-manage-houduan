@@ -9,11 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 //注意：写完一个新的接口记得重启tomcat，否则postman会报404，找不到这个接口
 @CrossOrigin//解决跨域问题
 @Controller
-@RequestMapping(value="/manage",method = {RequestMethod.POST, RequestMethod.GET})
+@RequestMapping(value="/right",method = {RequestMethod.POST, RequestMethod.GET})
 public class RightController {
     @Autowired(required = false)
     @Qualifier("rightServiceImpl")
@@ -26,10 +27,16 @@ public class RightController {
         //注意：第22行的rightService首字母r一定要小写！错误犯两次了！！！
         return CommonReturnType.create(null);
     }//新增
-    @RequestMapping("/setRight")
+    @RequestMapping("/getRights")
     @ResponseBody
-    public CommonReturnType selectAllRights(){
+    public CommonReturnType getAllRights(){
         List<Rights> r = rightService.selectAllRights();
+        return CommonReturnType.create(r);
+    }//显示
+    @RequestMapping("/getAllViewRights")
+    @ResponseBody
+    public CommonReturnType getAllViewRights(){
+        List<Map<String,Object>> r = rightService.selectAllViewRights();
         return CommonReturnType.create(r);
     }//显示
 
